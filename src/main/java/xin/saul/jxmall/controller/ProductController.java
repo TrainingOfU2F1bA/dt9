@@ -1,9 +1,13 @@
 package xin.saul.jxmall.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 import xin.saul.jxmall.entity.Product;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,8 +25,12 @@ public class ProductController {
     }
 
     @PostMapping(PRODUCTS)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void add(@RequestBody Product product){
+    public ResponseEntity add(@RequestBody Product product, UriComponentsBuilder builder){
+        URI uri = builder.path(PRODUCTS).build().toUri();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uri);
+        ResponseEntity entity = new ResponseEntity(headers,HttpStatus.CREATED);
+        return entity;
     }
 
     @GetMapping(PRODUCTS)
