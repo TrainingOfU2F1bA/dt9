@@ -11,13 +11,22 @@ public class Order {
     private Long id;
     private Long productId;
     private Integer purchaseCount;
+    private Long recordId;
     private Long userId;
-    private Integer totolPrice;
+    private Integer totalPrice;
     private Date createTime;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
-    @JoinColumn(name="companyId",insertable = false,updatable = false)
+    @JoinColumn(name="orderId",insertable = false,updatable = false)
     private List<PurchaseItem> purchaseItemList;
+
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
 
     public Long getId() {
         return id;
@@ -27,12 +36,12 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getTotolPrice() {
-        return totolPrice;
+    public Integer getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotolPrice(Integer totolPrice) {
-        this.totolPrice = totolPrice;
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Date getCreateTime() {
