@@ -1,5 +1,6 @@
 package xin.saul.jxmall.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import xin.saul.jxmall.entity.Product;
 
@@ -15,10 +16,12 @@ public class ProductController {
     public static final String DESCRIPTION = "description";
 
     @PutMapping(PRODUCTS_ID)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Product product){
     }
 
     @PostMapping(PRODUCTS)
+    @ResponseStatus(HttpStatus.CREATED)
     public void add(@RequestBody Product product){
     }
 
