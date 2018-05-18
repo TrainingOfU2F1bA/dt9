@@ -1,16 +1,46 @@
 package xin.saul.jxmall.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import xin.saul.jxmall.entity.Product;
 
-@RestController(ProductController.PRODUCTS)
+import java.util.ArrayList;
+import java.util.Collections;
+
+@RestController
 public class ProductController {
 
     public static final String PRODUCTS = "products";
+    public static final String PRODUCTS_ID = "products/{id}";
+    public static final String NAME = "name";
+    public static final String DESCRIPTION = "description";
 
-   @GetMapping("products/{id}")
-    public String find(@PathVariable Long id){
-        return id.toString();
+    @PutMapping(PRODUCTS_ID)
+    public void update(@RequestBody Product product){
     }
+
+    @PostMapping(PRODUCTS)
+    public void add(@RequestBody Product product){
+    }
+
+    @GetMapping(PRODUCTS)
+    public Object findAll(){
+        return new ArrayList<Product>(Collections.singleton(new Product()));
+    }
+
+    @GetMapping(PRODUCTS_ID)
+    public Product find(@PathVariable Long id){
+        return new Product();
+    }
+
+    @GetMapping(value = PRODUCTS,params = {NAME})
+    public Object find(String name){
+        return new ArrayList<Product>(Collections.singleton(new Product()));
+    }
+
+    @GetMapping(value = PRODUCTS,params = {NAME, DESCRIPTION})
+    public Object find(String name,String description){
+        return new ArrayList<Product>(Collections.singleton(new Product()));
+    }
+
+
 }
