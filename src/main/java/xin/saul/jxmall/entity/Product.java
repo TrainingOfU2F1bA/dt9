@@ -1,12 +1,26 @@
 package xin.saul.jxmall.entity;
 
-import org.springframework.context.annotation.Description;
-
+import javax.persistence.*;
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String description;
     private int price;
+
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name="productId",insertable = false,updatable = false)
+    private Inventory inventory;
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     public Long getId() {
         return id;

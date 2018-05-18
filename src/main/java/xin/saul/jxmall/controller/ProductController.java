@@ -17,7 +17,7 @@ public class ProductController {
 
     @PutMapping(PRODUCTS_ID)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Product product){
+    public void update(@PathVariable Long id,@RequestBody Product product){
     }
 
     @PostMapping(PRODUCTS)
