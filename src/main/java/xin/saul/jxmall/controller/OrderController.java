@@ -1,9 +1,13 @@
 package xin.saul.jxmall.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 import xin.saul.jxmall.entity.Order;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +21,12 @@ public class OrderController {
     public static final String ORDER_STATUS_WITHDRAWN = "orderStatus=withdrawn";
 
     @PostMapping(ORDERS)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void add(@RequestBody List<Order> order){
+    public ResponseEntity add(@RequestBody List<Order> order, UriComponentsBuilder builder){
+        URI uri = builder.path(ORDERS).build().toUri();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uri);
+        ResponseEntity entity = new ResponseEntity(headers,HttpStatus.CREATED);
+        return entity;
     }
 
     @GetMapping(ORDERS)
@@ -43,8 +51,8 @@ public class OrderController {
         System.out.println("drawn");
     }
 
-    @GetMapping(value = ORDERS_ID,params = {"userId"})
-    public void findByuid(@PathVariable Long userId){
-        System.out.println("userId");
+    @GetMapping(value = ORDERS,params = {"userId"})
+    public List<Order> findByuid(Long userId){
+        return new ArrayList<Order>(Collections.singleton(new Order()));
     }
 }
