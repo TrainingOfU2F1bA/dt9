@@ -8,7 +8,7 @@ public class Product {
     private Long id;
     private String name;
     private String description;
-    private int price;
+    private Double price;
 
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name="productId",insertable = false,updatable = false)
@@ -46,11 +46,11 @@ public class Product {
         this.description = description;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }
