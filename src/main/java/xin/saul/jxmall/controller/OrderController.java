@@ -1,5 +1,6 @@
 package xin.saul.jxmall.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import xin.saul.jxmall.entity.Order;
 
@@ -16,6 +17,7 @@ public class OrderController {
     public static final String ORDER_STATUS_WITHDRAWN = "orderStatus=withdrawn";
 
     @PostMapping(ORDERS)
+    @ResponseStatus(HttpStatus.CREATED)
     public void add(@RequestBody List<Order> order){
     }
 
@@ -30,11 +32,13 @@ public class OrderController {
     }
 
     @PutMapping(value = ORDERS_ID,params = {ORDER_STATUS_PAID})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void paid(@PathVariable Long id){
         System.out.println("paid");
     }
 
     @PutMapping(value = ORDERS_ID,params = {ORDER_STATUS_WITHDRAWN})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void drawn(@PathVariable Long id){
         System.out.println("drawn");
     }
