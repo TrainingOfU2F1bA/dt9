@@ -1,5 +1,7 @@
 package xin.saul.jxmall.service;
 
-public interface InventoryService  {
+import xin.saul.jxmall.entity.Inventory;
 
+public interface InventoryService  {
+    void changeCount(Long id, Inventory inventory);
 }
