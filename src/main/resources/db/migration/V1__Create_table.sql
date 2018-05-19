@@ -12,6 +12,8 @@ drop table if exists PurchaseItem;
 
 drop table if exists User;
 
+
+
 /*==============================================================*/
 /* Table: Account                                               */
 /*==============================================================*/
@@ -59,6 +61,7 @@ create table `Order`
    userId               int(64),
    totalPrice           int,
    createTime           date,
+   status               varchar(50),
    primary key (id)
 );
 

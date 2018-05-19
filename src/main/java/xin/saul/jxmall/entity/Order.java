@@ -5,9 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "`Order`")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long productId;
     private Integer purchaseCount;
@@ -19,6 +20,7 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     @JoinColumn(name="orderId",insertable = false,updatable = false)
     private List<PurchaseItem> purchaseItemList;
+    private String status;
 
     public Long getRecordId() {
         return recordId;
@@ -82,5 +84,13 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
