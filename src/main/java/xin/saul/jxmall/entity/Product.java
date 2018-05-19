@@ -4,14 +4,14 @@ import javax.persistence.*;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private Double price;
 
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name="productId",insertable = false,updatable = false)
+    @JoinColumn(name = "id",referencedColumnName="productId",insertable = false,updatable = false)
     private Inventory inventory;
 
     public Inventory getInventory() {

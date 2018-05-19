@@ -17,7 +17,7 @@ drop table if exists User;
 /*==============================================================*/
 create table Account
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    balance              int,
    userId               int,
    primary key (id)
@@ -28,7 +28,7 @@ create table Account
 /*==============================================================*/
 create table Inventory
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    productId            int(64),
    count                int,
    primary key (id)
@@ -39,7 +39,7 @@ create table Inventory
 /*==============================================================*/
 create table LogisticsRecord
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    deliveryMan          varbinary(20),
    outboundTime         date,
    signedTime           date,
@@ -52,7 +52,7 @@ create table LogisticsRecord
 /*==============================================================*/
 create table `Order`
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    productId            int(64),
    purchaseCount        int,
    recordId             int(64),
@@ -67,7 +67,7 @@ create table `Order`
 /*==============================================================*/
 create table Product
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    name                 varchar(50),
    description          varchar(800),
    price                double,
@@ -79,7 +79,7 @@ create table Product
 /*==============================================================*/
 create table PurchaseItem
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    orderId              int(64),
    primary key (id)
 );
@@ -89,8 +89,9 @@ create table PurchaseItem
 /*==============================================================*/
 create table User
 (
-   id                   int(64) not null,
+   id                   int(64) not null auto_increment,
    name                 varchar(20),
    password             varchar(50),
    primary key (id)
 );
+

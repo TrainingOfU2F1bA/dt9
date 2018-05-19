@@ -7,4 +7,7 @@ import xin.saul.jxmall.entity.Product;
 @Repository
 public interface ProductDao extends JpaRepository<Product,Long> {
 
+    Object findByNameLike(String name);
+
+    Object findByNameLikeAndDescriptionLike(String name, String description);
 }
