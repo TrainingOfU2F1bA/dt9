@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class LogisticsRecord {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String deliveryMan;
     private Date outboundTime;
@@ -15,7 +15,7 @@ public class LogisticsRecord {
     private String logisticsStatus;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
-    @JoinColumn(name="recordId",insertable = false,updatable = false)
+    @JoinColumn(name = "id",referencedColumnName="recordId",insertable = false,updatable = false)
     private Order order;
 
     public Long getId() {
