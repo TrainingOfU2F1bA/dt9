@@ -15,17 +15,17 @@ public class LogisticsRecordServiceImpl implements LogisticsRecordService{
 
     @Override
     public void shipping(Long id, Long orderId) {
-        LogisticsRecord logisticsRecord = new LogisticsRecord();
-        logisticsRecord.setId(id);
-        logisticsRecord.setLogisticsStatus("shipping");
-        recordDao.save(logisticsRecord);
+        recordDao.findById(id).ifPresent(logisticsRecord ->{
+            logisticsRecord.setLogisticsStatus("shipping");
+            recordDao.save(logisticsRecord);
+        } );
     }
 
     @Override
     public void signed(Long id, Long orderId) {
-        LogisticsRecord logisticsRecord = new LogisticsRecord();
-        logisticsRecord.setId(id);
-        logisticsRecord.setLogisticsStatus("signed");
-        recordDao.save(logisticsRecord);
+        recordDao.findById(id).ifPresent(logisticsRecord ->{
+            logisticsRecord.setLogisticsStatus("signed");
+            recordDao.save(logisticsRecord);
+        } );
     }
 }

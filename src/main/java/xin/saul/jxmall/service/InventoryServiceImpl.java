@@ -11,7 +11,9 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public void changeCount(Long id, Inventory inventory) {
-        inventory.setId(id);
-        inventoryDao.save(inventory);
+        inventoryDao.findById(id).ifPresent(x->{
+            x.setCount(inventory.getCount());
+            inventoryDao.save(x);
+        });
     }
 }

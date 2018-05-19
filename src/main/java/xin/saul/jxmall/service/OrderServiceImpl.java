@@ -40,16 +40,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void paid(Long id) {
-        Order order = new Order();
-        order.setStatus("paid");
-        orderDao.save(order);
+        orderDao.findById(id).ifPresent(order -> {
+            order.setStatus("paid");
+            orderDao.save(order);
+        });
     }
 
     @Override
     public void drawn(Long id) {
-        Order order = new Order();
-        order.setStatus("drawn");
-        orderDao.save(order);
+        orderDao.findById(id).ifPresent(order -> {
+            order.setStatus("drawn");
+            orderDao.save(order);
+        });
     }
 
     @Override
